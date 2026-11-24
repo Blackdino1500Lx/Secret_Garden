@@ -1,0 +1,140 @@
+/* ============================================================
+   Estética Secret Garden — yoshimi.css
+   Override de variables y estilos para la submarca Yoshimi.
+   ============================================================ */
+
+.yoshimi {
+  --y-verde:        #ccd4ad;
+  --y-verde-claro:  #e1e4c2;
+  --y-rosa-claro:   #f9e0e6;
+  --y-rosa:         #e3b1bf;
+  --y-rosa-fuerte:  #ca93a3;
+  --y-durazno:      #dfb390;
+  --y-terracota:    #c28472;
+
+  /* Rol "genérico" redefinido dentro de Yoshimi */
+  --color-acento:    var(--y-terracota);
+  --color-acento-2:  var(--y-rosa-fuerte);
+  --color-fondo-alt: var(--y-rosa-claro);
+
+  --font-principal:  var(--font-titulo-y);
+  --font-detalle:    var(--font-texto-y);
+}
+
+.yoshimi {
+  font-family: var(--font-texto-y);
+}
+
+.yoshimi h1,
+.yoshimi h2,
+.yoshimi h3,
+.yoshimi h4,
+.yoshimi h5 {
+  font-family: var(--font-titulo-y);
+  color: var(--y-terracota);
+}
+
+.yoshimi a {
+  color: var(--y-rosa-fuerte);
+}
+
+.yoshimi a:hover {
+  color: var(--y-terracota);
+}
+
+.yoshimi .btn-primary {
+  background: var(--y-terracota);
+  color: #fff;
+}
+
+.yoshimi .btn-primary:hover {
+  background: #a86d5c;
+}
+
+.yoshimi .btn-secondary {
+  border-color: var(--y-rosa-fuerte);
+  color: var(--y-rosa-fuerte);
+}
+
+.yoshimi .btn-secondary:hover {
+  background: var(--y-rosa-fuerte);
+  color: #fff;
+}
+
+.yoshimi .tab {
+  border-color: var(--y-verde-claro);
+}
+
+.yoshimi .tab.active {
+  background: var(--y-rosa-fuerte);
+  color: #fff;
+  border-color: var(--y-rosa-fuerte);
+}
+
+/* Hero por defecto de Yoshimi */
+.yoshimi .hero-default {
+  background: linear-gradient(135deg, var(--y-verde-claro) 0%, var(--y-rosa-claro) 55%, var(--y-durazno) 100%);
+}
+
+.yoshimi .hero-default-logo {
+  background: rgba(255,255,255,.6);
+}
+
+.yoshimi .hero h1 {
+  color: var(--y-terracota);
+}
+
+.yoshimi .hero p {
+  color: #7a5248;
+}
+
+/* Tarjetas */
+.yoshimi .card {
+  border-color: var(--y-verde-claro);
+}
+
+.yoshimi .card-title {
+  color: var(--y-terracota);
+  font-family: var(--font-titulo-y);
+}
+
+.yoshimi .price {
+  color: var(--y-terracota);
+  font-family: var(--font-titulo-y);
+}
+
+.yoshimi .badge-discount {
+  background: var(--y-rosa);
+  color: #5a2d3a;
+}
+
+.yoshimi .qty-control {
+  border-color: var(--y-verde-claro);
+}
+
+.yoshimi .qty-control button {
+  color: var(--y-terracota);
+}
+
+.yoshimi .qty-control button:hover {
+  background: var(--y-rosa-claro);
+}
+
+/* Sección intro */
+.yoshimi .yoshimi-intro h2 {
+  color: var(--y-terracota);
+}
+
+.yoshimi .yoshimi-intro p {
+  color: #7a5248;
+  font-size: 1.1rem;
+}
+
+/* Separador de marca */
+.yoshimi .yoshimi-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: .5rem;
+  padding: 2rem 1rem 1rem;
+}

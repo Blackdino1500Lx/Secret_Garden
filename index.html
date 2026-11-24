@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Estética Secret Garden — Un espacio para florecer</title>
+  <meta name="description" content="Estética Secret Garden: tratamientos faciales, corporales, epilación y masajes en Alajuelita, San José. Yoshimi Nails: manicura y pedicura. Un espacio para florecer." />
+  <meta name="theme-color" content="#838564" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Estética Secret Garden — Un espacio para florecer" />
+  <meta property="og:description" content="Tratamientos faciales y corporales en Alajuelita, San José. Submarca Yoshimi Nails: manicura y pedicura." />
+  <meta property="og:locale" content="es_CR" />
+  <meta property="og:image" content="img/logos/logo-secret-garden-circular.png" />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="img/logos/logo-secret-garden.png" />
+
+  <!-- Hojas de estilo (orden importa) -->
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/layout.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/yoshimi.css" />
+
+  <!-- JSON-LD: negocio local -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BeautySalon",
+    "name": "Estética Secret Garden",
+    "description": "Estética facial y corporal en Alajuelita, San José. Submarca Yoshimi Nails: manicura y pedicura.",
+    "slogan": "Un espacio para florecer",
+    "telephone": "+50664511598",
+    "email": "esteticasecretgarden@gmail.com",
+    "url": "https://esteticasecretgarden.example/",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Alajuelita",
+      "addressRegion": "San José",
+      "addressCountry": "CR"
+    },
+    "sameAs": [
+      "https://instagram.com/est.secretgarden",
+      "https://wa.me/50664511598"
+    ]
+  }
+  </script>
+</head>
+<body>
+
+  <!-- ══════════ HEADER ══════════ -->
+  <header class="site-header" id="site-header">
+    <div class="header-container">
+      <a class="logo" href="#inicio" aria-label="Ir al inicio">
+        <img src="img/logos/logo-sn-text.png"
+             alt="Estética Secret Garden"
+             onerror="this.src='img/placeholders/placeholder.svg'; this.style.objectFit='contain';" />
+      </a>
+
+      <nav class="main-nav" id="main-nav" aria-label="Navegación principal">
+        <a href="#inicio" class="active">Inicio</a>
+        <a href="#servicios">Servicios</a>
+        <a href="#productos">Productos</a>
+        <a href="#nosotros">Nosotros</a>
+        <a href="#yoshimi">Yoshimi</a>
+        <a href="#contacto">Contacto</a>
+      </nav>
+
+      <button class="cart-toggle" id="cart-toggle" aria-label="Abrir carrito">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M7 4a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v2h3a1 1 0 0 1 1 1v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7a1 1 0 0 1 1-1h3V4zm2 2h6V4H9v2zm-1 6a1 1 0 1 0 0 2h8a1 1 0 1 0 0-2H8z"/>
+        </svg>
+        <span class="cart-count" id="cart-count">0</span>
+      </button>
+
+      <button class="hamburger" id="hamburger" aria-label="Abrir menú" aria-expanded="false" aria-controls="main-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ══════════ HERO SECRET GARDEN ══════════ -->
+    <section class="hero hero-sg" id="inicio" data-banner-location="hero_secret_garden" aria-label="Portada Secret Garden">
+      <div class="hero-default">
+        <div class="hero-default-content">
+          <img class="hero-default-logo"
+               src="img/logos/logo-opt2.png"
+               alt="Logo circular Secret Garden"
+               onerror="this.src='img/placeholders/placeholder.svg';" />
+          <h1>Un espacio para florecer</h1>
+          <p>Estética facial y corporal en Alajuelita, San José. Cuidamos tu piel y tu bienestar con tratamientos personalizados.</p>
+          <div class="hero-actions">
+            <a href="#servicios" class="btn btn-primary">Agendar cita</a>
+            <a href="#productos" class="btn btn-secondary">Ver productos</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════ NOSOTROS ══════════ -->
+    <section class="seccion" id="nosotros">
+      <div class="about">
+        <div class="about-text">
+          <h2>Acerca de Secret Garden</h2>
+          <p>Estética Secret Garden nace como un espacio para florecer: un lugar tranquilo donde cuidamos tu piel, tu cuerpo y tu bienestar con técnicas personalizadas.</p>
+          <p>Contamos con <strong>1 año y medio de experiencia</strong> y formación como <strong>Esteticista Facial y Corporal – Técnico 2</strong>, con certificado avalado por el Instituto Nacional de Aprendizaje (INA).</p>
+          <p>Estamos en Alajuelita, San José. Cada visita es una oportunidad para reconectar contigo misma.</p>
+        </div>
+        <div class="about-media">
+          <img src="img/logos/logo-secret-garden.png" alt="Espacio de Estética Secret Garden" loading="lazy" />
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════ SERVICIOS SG ══════════ -->
+    <section class="seccion seccion-alt" id="servicios">
+      <div class="seccion-head">
+        <h2>Servicios</h2>
+        <p>Tratamientos faciales, corporales y de epilación pensados para tu bienestar.</p>
+      </div>
+
+      <div class="tabs" id="tabs-servicios-sg" role="tablist" aria-label="Categorías de servicios"></div>
+      <div class="cards-grid" id="grid-servicios-sg">
+        <div class="skeleton"></div>
+        <div class="skeleton"></div>
+        <div class="skeleton"></div>
+      </div>
+    </section>
+
+    <!-- ══════════ PRODUCTOS SG ══════════ -->
+    <section class="seccion" id="productos">
+      <div class="seccion-head">
+        <h2>Productos</h2>
+        <p>Productos seleccionados para el cuidado de tu piel.</p>
+      </div>
+      <div class="cards-grid" id="grid-productos-sg">
+        <div class="loading-state">Cargando productos…</div>
+      </div>
+    </section>
+
+    <!-- ══════════ YOSHIMI ══════════ -->
+    <section class="seccion-yoshimi yoshimi" id="yoshimi">
+
+      <!-- Hero Yoshimi -->
+      <div class="hero yoshimi-hero" data-banner-location="hero_yoshimi" aria-label="Portada Yoshimi Nails">
+        <div class="hero-default">
+          <div class="hero-default-content">
+            <img class="hero-default-logo"
+                 src="img/logos/logo-yoshimi.png"
+                 alt="Logo Yoshimi Nails"
+                 onerror="this.src='img/placeholders/placeholder.svg';" />
+            <h1>Yoshimi Nails</h1>
+            <p>Manicura y pedicura, cuidado y belleza.</p>
+            <div class="hero-actions">
+              <a href="#yoshimi-servicios" class="btn btn-primary">Ver servicios</a>
+              <a href="#yoshimi-productos" class="btn btn-secondary">Ver productos</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Servicios Yoshimi -->
+      <div class="seccion" id="yoshimi-servicios">
+        <div class="yoshimi-intro">
+          <h2>Servicios Yoshimi</h2>
+          <p>Manicura y pedicura con detalle y cariño.</p>
+        </div>
+        <div class="tabs" id="tabs-servicios-y" role="tablist" aria-label="Categorías Yoshimi"></div>
+        <div class="cards-grid" id="grid-servicios-y">
+          <div class="skeleton"></div>
+          <div class="skeleton"></div>
+          <div class="skeleton"></div>
+        </div>
+      </div>
+
+      <!-- Productos Yoshimi -->
+      <div class="seccion" id="yoshimi-productos" style="background: var(--y-rosa-claro);">
+        <div class="yoshimi-intro">
+          <h3>Productos Yoshimi</h3>
+        </div>
+        <div class="cards-grid" id="grid-productos-y">
+          <div class="loading-state">Cargando productos…</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════ CONTACTO ══════════ -->
+    <section class="seccion" id="contacto">
+      <div class="seccion-head">
+        <h2>Contacto</h2>
+        <p>Escríbenos o visítanos en Alajuelita, San José.</p>
+      </div>
+
+      <div class="contacto-grid">
+        <div class="contacto-item">
+          <div class="icono" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zM4 6h16v2l-8 5-8-5V6zm0 12V10l8 5 8-5v8H4z"/></svg>
+          </div>
+          <h3>Correo</h3>
+          <a href="mailto:esteticasecretgarden@gmail.com" data-contact="correo">esteticasecretgarden@gmail.com</a>
+        </div>
+
+        <div class="contacto-item">
+          <div class="icono" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M20.5 3.5A11 11 0 0 0 3.4 17.3L2 22l4.8-1.3A11 11 0 1 0 20.5 3.5zM12 20a8 8 0 0 1-4-1l-.3-.2-2.9.8.8-2.8-.2-.3a8 8 0 1 1 6.6 3.5zm4.4-6a1 1 0 0 1-.6.9c-.5.3-1 .3-1.5.1a11 11 0 0 1-4.1-3 9 9 0 0 1-1.5-2.6c-.2-.5 0-1 .4-1.4l.5-.5a.7.7 0 0 1 .9 0l1 1.4c.2.2.1.5-.1.7l-.6.6a.5.5 0 0 0-.1.6c.4.8 1 1.5 1.7 2.1.5.4 1 .7 1.6.9a.4.4 0 0 0 .5-.1l.6-.6a.6.6 0 0 1 .7-.1l1.5 1a.7.7 0 0 1 .3.6z"/></svg>
+          </div>
+          <h3>WhatsApp</h3>
+          <a href="https://wa.me/50664511598" target="_blank" rel="noopener" data-contact="whatsapp">6451-1598</a>
+        </div>
+
+        <div class="contacto-item">
+          <div class="icono" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-3.6 19.3c-.1-.8-.2-2 0-2.9l1.2-5.1s-.3-.6-.3-1.5c0-1.4.8-2.4 1.8-2.4.9 0 1.3.6 1.3 1.4 0 .9-.6 2.2-.9 3.4-.2 1 .5 1.9 1.5 1.9 1.8 0 3-2.3 3-5 0-2.1-1.4-3.6-3.9-3.6-2.8 0-4.6 2.1-4.6 4.4 0 .8.2 1.4.5 1.8.1.1.1.2.1.4l-.2.9c-.1.3-.3.4-.6.3-1.4-.6-2.1-2.2-2.1-4 0-3 2.6-6.6 7.7-6.6 4.1 0 6.8 3 6.8 6.2 0 4.2-2.3 7.3-5.8 7.3-1.1 0-2.2-.6-2.6-1.3l-.7 2.6c-.3 1-.9 2.1-1.4 2.8A10 10 0 1 0 12 2z"/></svg>
+          </div>
+          <h3>Instagram</h3>
+          <a href="https://instagram.com/est.secretgarden" target="_blank" rel="noopener" data-contact="instagram">@est.secretgarden</a>
+        </div>
+
+        <div class="contacto-item">
+          <div class="icono" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6a2.5 2.5 0 0 1 0 5.5z"/></svg>
+          </div>
+          <h3>Ubicación</h3>
+          <p data-contact="ubicacion">Alajuelita, San José</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ══════════ FOOTER ══════════ -->
+ <footer class="site-footer">
+  <img class="footer-logo"
+       src="img/logos/logo-opt2.png"
+       alt="Logo Secret Garden"
+       onerror="this.src='img/placeholders/placeholder.svg';" />
+  <p class="footer-frase">Un espacio para florecer</p>
+
+  <div class="social">
+    <a href="https://instagram.com/est.secretgarden" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-3.6 19.3c-.1-.8-.2-2 0-2.9l1.2-5.1s-.3-.6-.3-1.5c0-1.4.8-2.4 1.8-2.4.9 0 1.3.6 1.3 1.4 0 .9-.6 2.2-.9 3.4-.2 1 .5 1.9 1.5 1.9 1.8 0 3-2.3 3-5 0-2.1-1.4-3.6-3.9-3.6-2.8 0-4.6 2.1-4.6 4.4 0 .8.2 1.4.5 1.8.1.1.1.2.1.4l-.2.9c-.1.3-.3.4-.6.3-1.4-.6-2.1-2.2-2.1-4 0-3 2.6-6.6 7.7-6.6 4.1 0 6.8 3 6.8 6.2 0 4.2-2.3 7.3-5.8 7.3-1.1 0-2.2-.6-2.6-1.3l-.7 2.6c-.3 1-.9 2.1-1.4 2.8A10 10 0 1 0 12 2z"/></svg>
+      Instagram
+    </a>
+    <a href="https://wa.me/50664511598" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 3.5A11 11 0 0 0 3.4 17.3L2 22l4.8-1.3A11 11 0 1 0 20.5 3.5zM12 20a8 8 0 0 1-4-1l-.3-.2-2.9.8.8-2.8-.2-.3a8 8 0 1 1 6.6 3.5z"/></svg>
+      WhatsApp
+    </a>
+    <a href="mailto:esteticasecretgarden@gmail.com">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zM4 6h16v2l-8 5-8-5V6zm0 12V10l8 5 8-5v8H4z"/></svg>
+      Correo
+    </a>
+  </div>
+
+  <p class="copyright">
+    &copy; <span id="anio">2026</span> Estética Secret Garden. Todos los derechos reservados.
+    · <a href="admin.html" class="footer-admin-link" rel="nofollow">Acceso administrativo</a>
+  </p>
+</footer>
+
+  <!-- ══════════ OVERLAY Y DRAWER DEL CARRITO (estructura lista; lógica en Fase 3) ══════════ -->
+  <div class="drawer-overlay" id="drawer-overlay" hidden></div>
+  <aside class="cart-drawer" id="cart-drawer" aria-hidden="true" aria-label="Carrito de compras">
+    <div class="drawer-head">
+      <h2>Tu carrito</h2>
+      <button class="drawer-close" id="cart-close" aria-label="Cerrar carrito">&times;</button>
+    </div>
+    <div class="drawer-body" id="cart-body">
+  <div id="cart-items-wrap">
+    <p class="empty-state">Tu carrito está vacío.</p>
+  </div>
+
+  <div id="cart-form-wrap" hidden>
+    <h3 class="cart-form-titulo">Tus datos</h3>
+
+    <div class="campo">
+      <label for="co-nombre">Nombre completo</label>
+      <input type="text" id="co-nombre" autocomplete="name" maxlength="80" />
+      <span class="error">Ingresá tu nombre (2 a 80 caracteres).</span>
+    </div>
+
+    <div class="campo">
+      <label for="co-telefono">Teléfono (8 dígitos)</label>
+      <input type="tel" id="co-telefono" autocomplete="tel" inputmode="numeric" maxlength="8" />
+      <span class="error">El teléfono debe tener 8 dígitos.</span>
+    </div>
+
+    <div class="campo">
+      <label>Método de pago</label>
+      <div class="radio-group">
+        <label class="radio-item"><input type="radio" name="co-metodo" value="sinpe" checked /> SINPE Móvil</label>
+        <label class="radio-item"><input type="radio" name="co-metodo" value="efectivo" /> Efectivo</label>
+      </div>
+    </div>
+
+    <div class="campo">
+      <label for="co-notas">Notas (opcional)</label>
+      <textarea id="co-notas" rows="2" maxlength="300"></textarea>
+    </div>
+  </div>
+</div>
+    <div class="drawer-foot">
+      <div class="cart-total-row">
+        <span>Total</span>
+        <span id="cart-total">₡0</span>
+      </div>
+      <button class="btn btn-primary btn-block" id="cart-checkout" disabled>Confirmar y enviar por WhatsApp</button>
+    </div>
+  </aside>
+
+  <!-- Modal de agendado (estructura lista; lógica en Fase 3) -->
+<div class="modal" id="booking-modal" aria-hidden="true" role="dialog" aria-labelledby="booking-titulo">
+  <div class="modal-card">
+    <button class="modal-close" id="booking-close" aria-label="Cerrar">&times;</button>
+    <h2 id="booking-titulo">Agendar cita</h2>
+    <p class="booking-servicio" id="booking-servicio"></p>
+    <div class="calendario" id="booking-calendario"></div>
+    <div class="booking-horas-wrap">
+      <h3>Horas disponibles</h3>
+      <div id="booking-horas"></div>
+    </div>
+    <div class="booking-actions">
+      <button type="button" class="btn btn-primary btn-block" id="booking-confirm" disabled>Agregar al carrito</button>
+      <button type="button" class="btn btn-secondary btn-block" id="booking-cancel">Cancelar</button>
+    </div>
+  </div>
+</div>
+
+<!-- Modal de éxito -->
+<div class="modal" id="success-modal" aria-hidden="true" role="dialog" aria-labelledby="success-titulo">
+  <div class="modal-card">
+    <h2 id="success-titulo">¡Pedido registrado!</h2>
+    <p>Tu pedido fue guardado. Te llevamos a WhatsApp para coordinar el pago.</p>
+    <div class="success-code" id="success-code"></div>
+    <div id="success-info"></div>
+    <div class="success-actions">
+      <a class="btn btn-primary btn-block" id="success-wa-link" href="#" target="_blank" rel="noopener">Abrir WhatsApp</a>
+      <button type="button" class="btn btn-secondary btn-block" id="success-close">Cerrar</button>
+    </div>
+  </div>
+</div>
+
+  <!-- Toasts -->
+  <div class="toast-container" id="toast-container" aria-live="polite"></div>
+
+  <!-- ══════════ SCRIPTS ══════════ -->
+ <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+<script src="js/config.js" defer></script>
+<script src="js/supabase-client.js" defer></script>
+<script src="js/utils.js" defer></script>
+<script src="js/ui.js" defer></script>
+<script src="js/catalog.js" defer></script>
+<script src="js/banners.js" defer></script>
+<script src="js/cart.js" defer></script>
+<script src="js/booking.js" defer></script>
+<script src="js/checkout.js" defer></script>
+<script src="js/main.js" defer></script>
+</body>
+</html>

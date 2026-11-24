@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Panel Admin — Estética Secret Garden</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <meta name="theme-color" content="#838564" />
+  <link rel="icon" type="image/png" href="img/logos/logo-opt2.png" />
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/admin.css" />
+</head>
+<body>
+
+  <!-- ══════════ LOGIN ══════════ -->
+  <div class="admin-login" id="admin-login">
+    <div class="admin-login-card">
+      <img class="admin-login-logo"
+           src="img/logos/logo-opt2.png"
+           alt="Secret Garden"
+           onerror="this.src='img/placeholders/placeholder.svg';" />
+      <h1>Panel Admin</h1>
+      <p class="admin-login-sub">Estética Secret Garden</p>
+
+      <form id="login-form" autocomplete="on">
+        <div class="campo">
+          <label for="login-email">Correo</label>
+          <input type="email" id="login-email" autocomplete="email" required />
+        </div>
+        <div class="campo">
+          <label for="login-pass">Contraseña</label>
+          <input type="password" id="login-pass" autocomplete="current-password" required />
+        </div>
+        <button type="submit" id="login-btn" class="btn btn-primary btn-block">Entrar</button>
+        <div class="login-error" id="login-error" hidden></div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ══════════ DASHBOARD ══════════ -->
+  <div class="admin-app" id="admin-app" hidden>
+
+    <header class="admin-header">
+      <div class="admin-brand">
+        <img class="admin-brand-logo"
+             src="img/logos/logo-opt2.png"
+             alt=""
+             onerror="this.style.display='none';" />
+        <div class="admin-brand-text">
+          <strong>Secret Garden</strong>
+          <small>Panel de administración</small>
+        </div>
+      </div>
+
+      <div class="admin-header-actions">
+        <a href="index.html" target="_blank" rel="noopener" class="admin-link">Ver sitio</a>
+        <button type="button" class="admin-btn-outline" id="logout-btn">Cerrar sesión</button>
+      </div>
+    </header>
+
+    <nav class="admin-tabs" id="admin-tabs" role="tablist" aria-label="Secciones del panel">
+      <button type="button" class="admin-tab active" data-tab="citas" role="tab" aria-selected="true">Citas</button>
+      <button type="button" class="admin-tab" data-tab="pedidos" role="tab" aria-selected="false">Pedidos</button>
+      <button type="button" class="admin-tab" data-tab="servicios" role="tab" aria-selected="false">Servicios</button>
+      <button type="button" class="admin-tab" data-tab="productos" role="tab" aria-selected="false">Productos</button>
+      <button type="button" class="admin-tab" data-tab="categorias" role="tab" aria-selected="false">Categorías</button>
+      <button type="button" class="admin-tab" data-tab="banners" role="tab" aria-selected="false">Banners</button>
+      <button type="button" class="admin-tab" data-tab="horarios" role="tab" aria-selected="false">Horarios y bloqueos</button>
+    </nav>
+
+    <main class="admin-main">
+      <section class="admin-panel active" id="panel-citas" data-panel="citas">
+        <div class="panel-placeholder">Cargando módulo de citas…</div>
+      </section>
+      <section class="admin-panel" id="panel-pedidos" data-panel="pedidos">
+        <div class="panel-placeholder">Módulo de pedidos en construcción.</div>
+      </section>
+      <section class="admin-panel" id="panel-servicios" data-panel="servicios">
+        <div class="panel-placeholder">Módulo de servicios en construcción.</div>
+      </section>
+      <section class="admin-panel" id="panel-productos" data-panel="productos">
+        <div class="panel-placeholder">Módulo de productos en construcción.</div>
+      </section>
+      <section class="admin-panel" id="panel-categorias" data-panel="categorias">
+        <div class="panel-placeholder">Módulo de categorías en construcción.</div>
+      </section>
+      <section class="admin-panel" id="panel-banners" data-panel="banners">
+        <div class="panel-placeholder">Módulo de banners en construcción.</div>
+      </section>
+      <section class="admin-panel" id="panel-horarios" data-panel="horarios">
+        <div class="panel-placeholder">Módulo de horarios en construcción.</div>
+      </section>
+    </main>
+  </div>
+
+  <!-- Toasts -->
+  <div class="toast-container" id="toast-container" aria-live="polite"></div>
+
+  <!-- ══════════ SCRIPTS ══════════ -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+  <script src="js/config.js" defer></script>
+  <script src="js/supabase-client.js" defer></script>
+  <script src="js/utils.js" defer></script>
+  <script src="js/ui.js" defer></script>
+  <script src="js/admin/admin-storage.js" defer></script>
+  <script src="js/admin/admin-auth.js" defer></script>
+  <script src="js/admin/admin-citas.js" defer></script>
+  <script src="js/admin/admin-pedidos.js" defer></script>
+  <script src="js/admin/admin-servicios.js" defer></script>
+  <script src="js/admin/admin-productos.js" defer></script>
+  <script src="js/admin/admin-categorias.js" defer></script>
+  <script src="js/admin/admin-banners.js" defer></script>
+  <script src="js/admin/admin-horarios.js" defer></script>
+  <script src="js/admin/admin-main.js" defer></script>
+</body>
+</html>

@@ -64,34 +64,99 @@ SG.ui = (function () {
 
   // ---------- Scroll-spy: resalta el enlace activo ----------
   function initScrollSpy() {
-    const secciones = ['inicio', 'servicios', 'productos', 'nosotros', 'yoshimi', 'contacto'];
-    const enlaces = Array.from(document.querySelectorAll('#main-nav a'));
+    const nav = document.getElementById('main-nav');
+    if (!nav) return;
 
-    function actualizar() {
-      const headerAlto = document.getElementById('site-header')?.offsetHeight || 0;
-      const scrollY = window.scrollY + headerAlto + 60;
-      let activo = 'inicio';
-      for (const id of secciones) {
-        const el = document.getElementById(id);
-        if (!el) continue;
-        if (el.offsetTop <= scrollY) activo = id;
+    const enlaces = Array.from(nav.querySelectorAll('a[href^="#"]'));
+    if (enlaces.length === 0) return;
+
+    // Secciones en el ORDEN REAL del DOM (no hardcodeado)
+    const secciones = Array.from(document.querySelectorAll('main > section[id], main > div[id]'))
+      .filter(function (el) {
+        return enlaces.some(function (a) {
+          return a.getAttribute('href') === '#' + el.id;
+        });
+      });
+
+    if (secciones.length === 0) return;
+
+    let activoId = null;
+
+    function getHeaderAlto() {
+      const h = document.getElementById('site-header');
+      return h ? h.offsetHeight : 0;
+    }
+
+    function calcularActivo() {
+      const headerAlto = getHeaderAlto();
+      const triggerY = headerAlto + 100;
+      let nuevaActiva = secciones[0].id;
+
+      // Si estamos al final del documento, marcar la última sección
+      const scrollMax = document.documentElement.scrollHeight - window.innerHeight;
+      if (window.scrollY >= scrollMax - 4) {
+        nuevaActiva = secciones[secciones.length - 1].id;
+      } else {
+        // Recorrer en orden del DOM: la última sección cuyo top
+        // esté por encima del trigger es la activa
+        for (let i = 0; i < secciones.length; i++) {
+          const rect = secciones[i].getBoundingClientRect();
+          if (rect.top <= triggerY) {
+            nuevaActiva = secciones[i].id;
+          } else {
+            break;
+          }
+        }
       }
+
+      if (nuevaActiva === activoId) return;
+      activoId = nuevaActiva;
+
       enlaces.forEach(function (a) {
-        a.classList.toggle('active', a.getAttribute('href') === '#' + activo);
+        const esActivo = a.getAttribute('href') === '#' + activoId;
+        a.classList.toggle('active', esActivo);
+        if (esActivo) {
+          a.setAttribute('aria-current', 'page');
+        } else {
+          a.removeAttribute('aria-current');
+        }
       });
     }
 
+    // Throttle con requestAnimationFrame
     let pendiente = false;
-    window.addEventListener('scroll', function () {
+    function onScrollOrResize() {
       if (pendiente) return;
       pendiente = true;
       requestAnimationFrame(function () {
-        actualizar();
+        calcularActivo();
         pendiente = false;
       });
-    }, { passive: true });
+    }
 
-    actualizar();
+    window.addEventListener('scroll', onScrollOrResize, { passive: true });
+    window.addEventListener('resize', onScrollOrResize);
+
+    // Recalcular cuando cargan las imágenes (cambia el layout)
+    document.querySelectorAll('img').forEach(function (img) {
+      if (!img.complete) {
+        img.addEventListener('load', calcularActivo, { once: true });
+      }
+    });
+
+    // Recalcular cuando alguna sección cambia de tamaño (catálogo dinámico)
+    if (typeof ResizeObserver !== 'undefined') {
+      try {
+        const ro = new ResizeObserver(function () { calcularActivo(); });
+        secciones.forEach(function (s) { ro.observe(s); });
+      } catch (_) { /* ignorar */ }
+    }
+
+    // También cuando termina de cargar el catálogo por JS
+    document.addEventListener('sg:catalog-loaded', calcularActivo);
+
+    // Cálculo inicial
+    calcularActivo();
   }
 
   // ---------- Año dinámico en el footer ----------

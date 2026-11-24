@@ -73,6 +73,7 @@ SG.catalog = (function () {
     renderServicios('yoshimi');
     renderProductos('secret_garden');
     renderProductos('yoshimi');
+    document.dispatchEvent(new CustomEvent('sg:catalog-loaded'));
   }
 
   // ---------- Tabs por marca ----------

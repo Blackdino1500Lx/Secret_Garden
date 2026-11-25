@@ -660,3 +660,27 @@
   height: 100%;
   z-index: 2;
 }
+/* Alineación de los banners */
+.banner-content.alineacion-centro {
+  text-align: center;
+  margin: 0 auto;
+}
+.banner-content.alineacion-centro .hero-actions {
+  justify-content: center;
+}
+
+.banner-content.alineacion-izquierda {
+  text-align: left;
+  margin-right: auto;
+}
+.banner-content.alineacion-izquierda .hero-actions {
+  justify-content: flex-start;
+}
+
+.banner-content.alineacion-derecha {
+  text-align: right;
+  margin-left: auto;
+}
+.banner-content.alineacion-derecha .hero-actions {
+  justify-content: flex-end;
+}

@@ -91,11 +91,15 @@ SG.banners = (function () {
       ? 'banner-slide' + (esPrimero ? ' activo' : '')
       : 'banner-slide activo';
 
+        // Obtenemos la alineación del banner (por defecto 'centro')
+    const alineacion = banner.alineacion || 'centro';
+    const claseAlineacion = 'alineacion-' + alineacion;
+
     return '' +
       '<div class="' + claseSlide + '" data-slide-index="' + index + '">' +
         picture +
         '<div class="banner-overlay" style="background: rgba(0,0,0,' + (overlay / 100) + ')"></div>' +
-        '<div class="banner-content">' +
+        '<div class="banner-content ' + claseAlineacion + '">' +
           '<h1>' + SG.utils.esc(titulo) + '</h1>' +
           (subtitulo ? '<p>' + SG.utils.esc(subtitulo) + '</p>' : '') +
           '<div class="hero-actions">' +

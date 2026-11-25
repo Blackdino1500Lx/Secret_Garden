@@ -236,6 +236,13 @@ SG.admin.banners = (function () {
         '<div class="campo"><label for="b-cta2-url">Botón 2 — Destino</label>' +
           '<select id="b-cta2-url" class="admin-filtro-select" style="width:100%">' + opcionesUrls(b.cta2_url) + '</select>' +
           '<input type="text" id="b-cta2-custom" placeholder="…o URL personalizada" value="' + SG.utils.esc(b.cta2_url || '') + '" style="margin-top:.3rem"></div>' +
+                  '<div class="campo full"><label for="b-alineacion">Alineación del contenido</label>' +
+          '<select id="b-alineacion" class="admin-filtro-select" style="width:100%">' +
+            '<option value="izquierda"' + (b.alineacion === 'izquierda' ? ' selected' : '') + '>Izquierda</option>' +
+            '<option value="centro"' + ((b.alineacion || 'centro') === 'centro' ? ' selected' : '') + '>Centro</option>' +
+            '<option value="derecha"' + (b.alineacion === 'derecha' ? ' selected' : '') + '>Derecha</option>' +
+          '</select>' +
+        '</div>' +
         '<div class="campo full"><label for="b-overlay">Opacidad overlay (0–60)</label>' +
           '<input type="range" id="b-overlay" min="0" max="60" value="' + (b.overlay_opacidad != null ? b.overlay_opacidad : 25) + '">' +
           '<small id="b-overlay-val">' + (b.overlay_opacidad != null ? b.overlay_opacidad : 25) + '%</small></div>' +
@@ -343,6 +350,7 @@ SG.admin.banners = (function () {
     const activo = document.getElementById('b-activo').checked;
     const visible_desde = document.getElementById('b-desde').value || null;
     const visible_hasta = document.getElementById('b-hasta').value || null;
+    const alineacion = document.getElementById('b-alineacion').value || 'centro';
     const titulo = document.getElementById('b-titulo').value.trim() || null;
     const subtitulo = document.getElementById('b-sub').value.trim() || null;
     const cta_texto = document.getElementById('b-cta1-txt').value.trim() || null;
@@ -392,7 +400,8 @@ SG.admin.banners = (function () {
         titulo, subtitulo,
         cta_texto, cta_url,
         cta2_texto, cta2_url,
-        overlay_opacidad, orden, activo, visible_desde, visible_hasta
+        overlay_opacidad, orden, activo, visible_desde, visible_hasta,
+        alineacion: alineacion 
       };
 
       const upd = await SG.sb.from('banners').update(payload).eq('id', bannerId);

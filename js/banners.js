@@ -37,20 +37,17 @@ SG.banners = (function () {
   }
 
   // ---------- Textos por defecto según ubicación ----------
+  // (Estos SOLO se usan en el título/subtítulo si están vacíos, NO en los botones)
   function defaultsUbicacion(location) {
     if (location === 'hero_yoshimi') {
       return {
         titulo: 'Yoshimi Nails',
-        subtitulo: 'Manicura y pedicura, cuidado y belleza.',
-        cta1: { texto: 'Ver servicios', url: '#yoshimi-servicios' },
-        cta2: { texto: 'Ver productos', url: '#yoshimi-productos' }
+        subtitulo: 'Manicura y pedicura, cuidado y belleza.'
       };
     }
     return {
       titulo: 'Un espacio para florecer',
-      subtitulo: 'Estética facial y corporal en Alajuelita, San José.',
-      cta1: { texto: 'Agendar cita', url: '#servicios' },
-      cta2: { texto: 'Ver productos', url: '#productos' }
+      subtitulo: 'Estética facial y corporal en Alajuelita, San José.'
     };
   }
 
@@ -58,15 +55,17 @@ SG.banners = (function () {
   function slideHtml(banner, location, index, total, esPrimero) {
     const def = defaultsUbicacion(location);
 
-    // Si el campo está vacío en el banner, usar el default
+    // Si el título/subtítulo están vacíos, usamos el default (para que no quede vacío)
     const titulo = (banner.titulo && banner.titulo.trim()) ? banner.titulo : def.titulo;
     const subtitulo = (banner.subtitulo && banner.subtitulo.trim()) ? banner.subtitulo : def.subtitulo;
 
-    const cta1Texto = (banner.cta_texto && banner.cta_texto.trim()) ? banner.cta_texto : def.cta1.texto;
-    const cta1Url = SG.utils.safeUrl(banner.cta_url) || def.cta1.url;
+    // Los BOTONES solo se muestran si el admin los escribió explícitamente.
+    // Al no usar "def.cta1.texto", si está vacío se convierte en null y no se dibuja.
+    const cta1Texto = (banner.cta_texto && banner.cta_texto.trim()) ? banner.cta_texto : null;
+    const cta1Url = SG.utils.safeUrl(banner.cta_url);
 
-    const cta2Texto = (banner.cta2_texto && banner.cta2_texto.trim()) ? banner.cta2_texto : def.cta2.texto;
-    const cta2Url = SG.utils.safeUrl(banner.cta2_url) || def.cta2.url;
+    const cta2Texto = (banner.cta2_texto && banner.cta2_texto.trim()) ? banner.cta2_texto : null;
+    const cta2Url = SG.utils.safeUrl(banner.cta2_url);
 
     const desktop = SG.utils.imgUrl(banner.imagen_path);
     const mobile = banner.imagen_movil_path ? SG.utils.imgUrl(banner.imagen_movil_path) : null;
@@ -116,17 +115,14 @@ SG.banners = (function () {
     if (!banners || banners.length === 0) return;
 
     // DEFENSA 1: marcar el hero como "tiene banner"
-    // Esto activa el CSS que oculta .hero-default aunque el JS falle.
     heroEl.classList.add('tiene-banner');
 
     // DEFENSA 2: eliminar explícitamente cualquier .hero-default
-    // que pueda haber quedado en el DOM (por hot-reload, cache, etc.)
     heroEl.querySelectorAll('.hero-default').forEach(function (el) {
       el.remove();
     });
 
     // DEFENSA 3: limpiar cualquier carrusel previo antes de volver a pintar
-    // (evita duplicados si init() se ejecuta dos veces)
     heroEl.querySelectorAll('[data-carousel]').forEach(function (el) {
       el.remove();
     });
@@ -233,9 +229,6 @@ SG.banners = (function () {
 
       if (banners && banners.length > 0) {
         renderHero(heroEl, banners, location);
-      } else {
-        // Sin banners: dejar el hero por defecto intacto
-        // (no hacemos nada, el HTML ya lo tiene)
       }
     }
   }

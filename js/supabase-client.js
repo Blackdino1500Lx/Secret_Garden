@@ -27,7 +27,14 @@ window.SG = window.SG || {};
     SG.sb = supabase.createClient(
       SG.config.SUPABASE_URL,
       SG.config.SUPABASE_ANON_KEY,
-      { db: { schema: SG.config.SCHEMA } }
+      {
+        auth: {
+          persistSession: true,       // Guarda la sesión en localStorage
+          autoRefreshToken: true,     // Refresca el token automáticamente
+          detectSessionInUrl: true
+        },
+        db: { schema: SG.config.SCHEMA }
+      }
     );
   } catch (err) {
     console.error('[SG] No se pudo crear el cliente de Supabase:', err);

@@ -331,6 +331,13 @@ SG.admin.banners = (function () {
 
   // ------------------------------------------------------------
   async function guardar() {
+    // Verificar sesión antes de hacer cambios
+    const sesionOk = await SG.admin.auth.ensureSession();
+    if (!sesionOk) {
+      SG.ui.toast('Tu sesión expiró. Cerrá sesión y volvé a entrar.', 'error');
+      return;
+    }
+
     const ubicacion = document.getElementById('b-ubicacion').value;
     const orden = parseInt(document.getElementById('b-orden').value, 10) || 0;
     const activo = document.getElementById('b-activo').checked;
@@ -403,6 +410,12 @@ SG.admin.banners = (function () {
   }
 
   async function toggleActivo(id) {
+    const sesionOk = await SG.admin.auth.ensureSession();
+    if (!sesionOk) {
+      SG.ui.toast('Tu sesión expiró. Cerrá sesión y volvé a entrar.', 'error');
+      return;
+    }
+
     const b = banners.find(function (x) { return x.id === id; });
     if (!b) return;
     const res = await SG.sb.from('banners').update({ activo: !b.activo }).eq('id', id);
@@ -413,6 +426,13 @@ SG.admin.banners = (function () {
 
   async function eliminarBanner(id) {
     if (!confirm('¿Eliminar este banner? Se borrará también la imagen del storage.')) return;
+
+    const sesionOk = await SG.admin.auth.ensureSession();
+    if (!sesionOk) {
+      SG.ui.toast('Tu sesión expiró. Cerrá sesión y volvé a entrar.', 'error');
+      return;
+    }
+
     const b = banners.find(function (x) { return x.id === id; });
     if (b) {
       if (b.imagen_path) await SG.admin.storage.borrar(b.imagen_path);

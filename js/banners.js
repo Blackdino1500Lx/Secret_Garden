@@ -1,6 +1,8 @@
 /* ============================================================
    Estética Secret Garden — banners.js
    Hero por defecto + banners administrables (single y carrusel).
+   Cuando hay banners activos, el hero-default se elimina por
+   completo (JS + CSS defensivo).
    ============================================================ */
 
 window.SG = window.SG || {};
@@ -55,16 +57,16 @@ SG.banners = (function () {
   // ---------- Render de un slide individual ----------
   function slideHtml(banner, location, index, total, esPrimero) {
     const def = defaultsUbicacion(location);
-    const titulo = banner.titulo || def.titulo;
-    const subtitulo = banner.subtitulo || def.subtitulo;
-    const cta1 = {
-      texto: banner.cta_texto || def.cta1.texto,
-      url: SG.utils.safeUrl(banner.cta_url) || def.cta1.url
-    };
-    const cta2 = {
-      texto: banner.cta2_texto || def.cta2.texto,
-      url: SG.utils.safeUrl(banner.cta2_url) || def.cta2.url
-    };
+
+    // Si el campo está vacío en el banner, usar el default
+    const titulo = (banner.titulo && banner.titulo.trim()) ? banner.titulo : def.titulo;
+    const subtitulo = (banner.subtitulo && banner.subtitulo.trim()) ? banner.subtitulo : def.subtitulo;
+
+    const cta1Texto = (banner.cta_texto && banner.cta_texto.trim()) ? banner.cta_texto : def.cta1.texto;
+    const cta1Url = SG.utils.safeUrl(banner.cta_url) || def.cta1.url;
+
+    const cta2Texto = (banner.cta2_texto && banner.cta2_texto.trim()) ? banner.cta2_texto : def.cta2.texto;
+    const cta2Url = SG.utils.safeUrl(banner.cta2_url) || def.cta2.url;
 
     const desktop = SG.utils.imgUrl(banner.imagen_path);
     const mobile = banner.imagen_movil_path ? SG.utils.imgUrl(banner.imagen_movil_path) : null;
@@ -98,8 +100,12 @@ SG.banners = (function () {
           '<h1>' + SG.utils.esc(titulo) + '</h1>' +
           (subtitulo ? '<p>' + SG.utils.esc(subtitulo) + '</p>' : '') +
           '<div class="hero-actions">' +
-            (cta1.texto && cta1.url ? '<a class="btn btn-primary" href="' + SG.utils.esc(cta1.url) + '">' + SG.utils.esc(cta1.texto) + '</a>' : '') +
-            (cta2.texto && cta2.url ? '<a class="btn btn-secondary" href="' + SG.utils.esc(cta2.url) + '">' + SG.utils.esc(cta2.texto) + '</a>' : '') +
+            (cta1Texto && cta1Url
+              ? '<a class="btn btn-primary" href="' + SG.utils.esc(cta1Url) + '">' + SG.utils.esc(cta1Texto) + '</a>'
+              : '') +
+            (cta2Texto && cta2Url
+              ? '<a class="btn btn-secondary" href="' + SG.utils.esc(cta2Url) + '">' + SG.utils.esc(cta2Texto) + '</a>'
+              : '') +
           '</div>' +
         '</div>' +
       '</div>';
@@ -109,8 +115,25 @@ SG.banners = (function () {
   function renderHero(heroEl, banners, location) {
     if (!banners || banners.length === 0) return;
 
+    // DEFENSA 1: marcar el hero como "tiene banner"
+    // Esto activa el CSS que oculta .hero-default aunque el JS falle.
+    heroEl.classList.add('tiene-banner');
+
+    // DEFENSA 2: eliminar explícitamente cualquier .hero-default
+    // que pueda haber quedado en el DOM (por hot-reload, cache, etc.)
+    heroEl.querySelectorAll('.hero-default').forEach(function (el) {
+      el.remove();
+    });
+
+    // DEFENSA 3: limpiar cualquier carrusel previo antes de volver a pintar
+    // (evita duplicados si init() se ejecuta dos veces)
+    heroEl.querySelectorAll('[data-carousel]').forEach(function (el) {
+      el.remove();
+    });
+
     if (banners.length === 1) {
       heroEl.innerHTML = slideHtml(banners[0], location, 0, 1, true);
+      console.log('[SG.banners] 1 banner renderizado en', location);
       return;
     }
 
@@ -132,6 +155,7 @@ SG.banners = (function () {
       '</div>';
 
     iniciarCarrusel(heroEl);
+    console.log('[SG.banners] carrusel con', banners.length, 'banners renderizado en', location);
   }
 
   // ---------- Comportamiento del carrusel ----------
@@ -174,7 +198,6 @@ SG.banners = (function () {
     car.addEventListener('mouseenter', detenerAutoplay);
     car.addEventListener('mouseleave', iniciarAutoplay);
 
-    // Touch swipe
     let touchInicio = null;
     car.addEventListener('touchstart', function (e) {
       touchInicio = e.touches[0].clientX;
@@ -187,18 +210,16 @@ SG.banners = (function () {
       iniciarAutoplay();
     }, { passive: true });
 
-    // Pausa si la pestaña no está visible
     document.addEventListener('visibilitychange', function () {
       if (document.hidden) detenerAutoplay();
       else iniciarAutoplay();
     });
 
     iniciarAutoplay();
-
     carruselesActivos.push({ detener: detenerAutoplay });
   }
 
-  // ---------- Init: recorre todos los [data-banner-location] ----------
+  // ---------- Init ----------
   async function init() {
     const heroes = Array.from(document.querySelectorAll('[data-banner-location]'));
     if (heroes.length === 0) return;
@@ -206,11 +227,16 @@ SG.banners = (function () {
     for (const heroEl of heroes) {
       const location = heroEl.dataset.bannerLocation;
       if (!location) continue;
+
       const banners = await cargarBanners(location);
+      console.log('[SG.banners]', location, '→', (banners || []).length, 'banner(s) activos');
+
       if (banners && banners.length > 0) {
         renderHero(heroEl, banners, location);
+      } else {
+        // Sin banners: dejar el hero por defecto intacto
+        // (no hacemos nada, el HTML ya lo tiene)
       }
-      // Si no hay banners, se deja el hero por defecto que ya está en el HTML.
     }
   }
 

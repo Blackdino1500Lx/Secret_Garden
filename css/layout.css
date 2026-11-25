@@ -207,32 +207,35 @@
   margin-top: 1rem;
 }
 
-/* Banners reales */
-.banner {
+/* ------------------------------------------------------------
+   Banners y Carrusel (CORREGIDO)
+   ------------------------------------------------------------ */
+.banner-slide {
   position: absolute;
   inset: 0;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 1.5rem;
+  opacity: 0;
+  transition: opacity .6s ease;
+  pointer-events: none;
 }
 
-.banner img,
-.banner picture {
+.banner-slide.activo {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* La imagen cubre todo el fondo */
+.banner-slide picture,
+.banner-slide img {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
   z-index: 0;
-}
-
-.banner picture img {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
 }
 
 .banner-overlay {
@@ -253,31 +256,19 @@
 .banner-content h2 {
   color: #fff;
   text-shadow: 0 2px 12px rgba(0,0,0,.35);
+  margin-bottom: 0.5rem;
 }
 
 .banner-content p {
   color: #fff;
   text-shadow: 0 1px 8px rgba(0,0,0,.3);
+  font-size: 1.2rem;
 }
 
-/* Carrusel de banners */
 .banner-carousel {
   position: relative;
   width: 100%;
   height: 100%;
-}
-
-.banner-slide {
-  position: absolute;
-  inset: 0;
-  opacity: 0;
-  transition: opacity .6s ease;
-  pointer-events: none;
-}
-
-.banner-slide.activo {
-  opacity: 1;
-  pointer-events: auto;
 }
 
 .banner-dots {
@@ -634,6 +625,7 @@
   .hero-actions { flex-direction: column; width: 100%; }
   .hero-actions .btn { width: 100%; }
 }
+
 /* Enlace discreto al panel admin */
 .footer-admin-link {
   color: inherit;
@@ -648,4 +640,23 @@
 .footer-admin-link:hover {
   opacity: 1;
   color: var(--sg-rosa-claro);
+}
+
+/* ============================================================
+   Defensa: si el hero tiene banner, ocultar el hero por defecto
+   aunque el JS falle a medias o haya cache del navegador.
+   ============================================================ */
+
+.hero.tiene-banner .hero-default {
+  display: none !important;
+}
+
+/* El banner debe llenar todo el hero, encima de cualquier cosa */
+.hero.tiene-banner > .banner-slide,
+.hero.tiene-banner > .banner-carousel {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
 }
